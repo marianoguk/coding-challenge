@@ -6,7 +6,7 @@ import com.n26.domain.exception.ErrorType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static com.n26.domain.service.TransactionCreator.createTx;
+import static com.n26.domain.dto.TransactionCreator.createTx;
 
 public class TransactionServiceTest {
 

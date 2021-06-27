@@ -18,3 +18,8 @@ management:
     health:
       enabled: true
       show-details: always
+
+# Swagger properties
+api-documentation:
+  title: 'Real time Transaction Statistics API'
+  description: 'The main use case for the API is to calculate realtime statistics for the last 60 seconds of transactions'

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,9 +18,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class TransactionDto {
-    private Long id;
     @JsonSerialize(using = BigDecimalSerializer.class)
+    @NotNull
     private BigDecimal amount;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    @NotNull
+    @PastOrPresent(message = "The date cannot be in the future")
     private LocalDateTime timestamp;
 }

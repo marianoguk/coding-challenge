@@ -2,6 +2,7 @@ package com.n26.infrastructure.resource;
 
 import com.n26.domain.dto.StatisticDto;
 import com.n26.domain.service.StatisticsService;
+import com.n26.infrastructure.resource.documentation.StatisticsResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/statistics")
-public class StatisticsController {
+public class StatisticsController implements StatisticsResource {
     @Autowired
     private StatisticsService service;
 
     @GetMapping
-    public ResponseEntity<StatisticDto> getStatistics(){
+    public ResponseEntity<StatisticDto> getStatistics() {
         return ResponseEntity.ok().body(service.getStatistic());
     }
 }

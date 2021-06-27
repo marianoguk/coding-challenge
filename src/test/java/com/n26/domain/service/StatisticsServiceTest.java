@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
 
-import static com.n26.domain.service.TransactionCreator.createTx;
+import static com.n26.domain.dto.TransactionCreator.createTx;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.comparesEqualTo;
 import static java.math.BigDecimal.ZERO;

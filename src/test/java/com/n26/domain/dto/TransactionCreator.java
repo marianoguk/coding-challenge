@@ -1,6 +1,4 @@
-package com.n26.domain.service;
-
-import com.n26.domain.dto.TransactionDto;
+package com.n26.domain.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
