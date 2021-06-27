@@ -1,3 +1,20 @@
 statistics:
   ttlInSeconds: 60
   slotSizeInMilliSeconds: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+      jmx:
+        exposure:
+          exclude: "*"
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
