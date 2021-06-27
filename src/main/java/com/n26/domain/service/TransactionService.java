@@ -13,12 +13,11 @@ import java.time.temporal.ChronoUnit;
 @Slf4j
 public class TransactionService {
 
-    private int ttlInSecs;
+    private final int ttlInSecs;
 
     public TransactionService(int ttlInSecs){
         this.ttlInSecs = ttlInSecs;
     }
-
 
     @TrackedEvent(operation = TrackedEventType.NEW)
     public TransactionDto create(TransactionDto toCreate) {
@@ -35,7 +34,7 @@ public class TransactionService {
         }
 
         // Persistence logic should be here
-        return new TransactionDto();
+        return toCreate;
     }
 
     @TrackedEvent(operation = TrackedEventType.DELETE_ALL)

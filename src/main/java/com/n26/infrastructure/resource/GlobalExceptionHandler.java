@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-import java.time.format.DateTimeParseException;
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,6 +34,12 @@ public class GlobalExceptionHandler {
         log.error("Handling Json Parsing error {}", exception.getMessage(), exception);
     }
 
+    @ResponseStatus( HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler({MismatchedInputException.class})
+    public void handleMismatchedInputException(Exception formatException){
+        log.error("Json Parsing error", formatException);
+    }
+
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<Void> handleDomainException(ApiException exception, WebRequest request) {
         log.error("Handling Domain exception {}", exception.getMessage(), exception);
@@ -45,19 +49,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({HttpMessageNotReadableException.class})
     public ResponseEntity<Void> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
         log.error("Http message not readable", ex);
-        if (ex.getCause() instanceof InvalidFormatException) {
-            return ResponseEntity.status(HttpStatus.valueOf(422)).build();
+        if (ex.getCause().getClass().equals(MismatchedInputException.class)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-
-        if( ex.getCause() instanceof MismatchedInputException) {
-            return ResponseEntity.status(HttpStatus.valueOf(400)).build();
-        }
-
-
-        if (ex.getCause() instanceof DateTimeParseException) {
-            return ResponseEntity.status(HttpStatus.valueOf(422)).build();
-        }
-        return ResponseEntity.status(HttpStatus.valueOf(422)).build();
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -66,9 +61,4 @@ public class GlobalExceptionHandler {
         log.error("Json Parsing error", formatException);
     }
 
-    @ResponseStatus( HttpStatus.UNPROCESSABLE_ENTITY)
-    @ExceptionHandler({MismatchedInputException.class})
-    public void handleMismatchedInputException(Exception formatException){
-        log.error("Json Parsing error", formatException);
-    }
 }
