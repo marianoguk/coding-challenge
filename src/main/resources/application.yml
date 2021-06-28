@@ -23,3 +23,11 @@ management:
 api-documentation:
   title: 'Real time Transaction Statistics API'
   description: 'The main use case for the API is to calculate realtime statistics for the last 60 seconds of transactions'
+
+info:
+  app:
+    name: ^project.artifactId^
+    description: ^project.description^
+    version: ^project.version^
+    encoding: ^project.build.sourceEncoding^
+    java.version: ^java.version^

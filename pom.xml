@@ -6,6 +6,7 @@
 
     <groupId>com.n26</groupId>
     <artifactId>coding-challenge</artifactId>
+    <description>Real time Transaction Statistics API</description>
     <version>1.0.2</version>
 
     <properties>
@@ -15,6 +16,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <resource.delimiter>^</resource.delimiter>
     </properties>
 
     <parent>
@@ -31,6 +33,16 @@
                 <version>2.22.2</version>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>^</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
